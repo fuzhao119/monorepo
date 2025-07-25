@@ -212,8 +212,15 @@ export const ImageSelect: React.FC<ImageSelectProps> = ({ maxCount = 1, uiWeight
             <Row gutter={[8, 8]} className="button-group-row">
                 <Col flex="1 1 0">
                     <Button
-                        style={{ width: '100%' }}
-                        icon={<PlusOutlined />}
+                        className="image-select-button"
+                        style={{ 
+                          width: "100%",
+                          backgroundImage: 'url("/src/images/commonButton.png")',
+                          backgroundSize: 'cover',
+                          backgroundRepeat: 'no-repeat',
+                          backgroundPosition: 'center',
+                          color: 'var(--sdppp-host-text-color)', // 添加文字基础颜色
+                        }}
                         onClick={async () => { 
                             const { thumbnail_url, file_token, source } = isMask ? await sdpppSDK.plugins.imaging.requestMaskGet() : await sdpppSDK.plugins.imaging.requestImageGet();
                             
@@ -239,11 +246,21 @@ export const ImageSelect: React.FC<ImageSelectProps> = ({ maxCount = 1, uiWeight
                                 setUploadError(error.message);
                             });
                         }}
-                    >从PS</Button>
+                    >从图层选择</Button>
                 </Col>
                 <Col flex="1 1 0">
                     <Upload style={{ width: '100%' }} {...uploadProps}>
-                        <Button style={{ width: '100%' }} icon={<UploadOutlined />}>从磁盘</Button>
+                      <Button 
+                        className="image-select-button"
+                        style={{ 
+                          width: "100%",
+                          backgroundImage: 'url("/src/images/commonButton.png")',
+                          backgroundSize: 'cover',
+                          backgroundRepeat: 'no-repeat',
+                          backgroundPosition: 'center',
+                          color: 'var(--sdppp-host-text-color)', // 添加文字基础颜色
+                        }}
+                      >从磁盘选择</Button>
                     </Upload>
                 </Col>
                 {images.length > 0 && (
@@ -304,35 +321,7 @@ const SingleImagePreview: React.FC<SingleImagePreviewProps> = ({
             }]}
         >
             <Row gutter={[8, 8]} className="image-preview-row single-image">
-                <Col span={8} className="image-info-col">
-                    <div className="image-info-panel">
-                        <div className="info-header">
-                            <div className="info-title">来源</div>
-                        </div>
-                        <div className="info-details">
-                            <div className="info-item">
-                                <span className="info-value">{image.source}</span>
-                            </div>
-                        </div>
-                        <div className="info-actions">
-                            {/* <Button
-                                size="small"
-                                type="primary"
-                                ghost
-                                icon={<EyeOutlined />}
-                                onClick={() => {
-                                    onPreviewCurrentChange(0);
-                                    onPreviewVisibleChange(true);
-                                }}
-                                style={{ width: '100%' }}
-                            >
-                                查看大图
-                            </Button> */}
-                        </div>
-                    </div>
-                </Col>
-                <Col span={16} className="preview-image-col">
-                    <div
+            <div
                         className="preview-image-wrapper single"
                         onClick={() => {
                             onPreviewCurrentChange(0);
@@ -350,7 +339,6 @@ const SingleImagePreview: React.FC<SingleImagePreviewProps> = ({
                             preview={false}
                         />
                     </div>
-                </Col>
             </Row>
         </Image.PreviewGroup>
     );

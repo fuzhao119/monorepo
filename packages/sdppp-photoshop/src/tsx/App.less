@@ -1,5 +1,4 @@
-:root {
-}
+
 #app.__ps_darkest__ {
     --sdppp-host-background-color: #191919;
     --sdppp-host-text-color: #fff;
@@ -50,5 +49,64 @@
 
     .app-select {
         margin-bottom: 8px;
+    }
+    /* 添加输入框渐变边框样式 */
+    .ant-input, .ant-input-number-input {
+        position: relative;
+        border: 1px solid transparent !important;
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+        /* 替换为目标渐变色，这里是垂直方向（to bottom ）从 #AB77F8 到 #5D5BE3 的渐变，可根据实际需求调整方向，比如 to right 等 */
+        background-image: 
+            linear-gradient(var(--sdppp-widget-background-color), var(--sdppp-widget-background-color)), 
+            linear-gradient(to bottom, #AB77F8, #5D5BE3);
+        
+        &:hover, &:focus {
+            border: 1px solid transparent !important;
+            /*  hover 和 focus 状态也同步替换成相同的目标渐变色 */
+            background-image: 
+                linear-gradient(var(--sdppp-widget-background-color), var(--sdppp-widget-background-color)), 
+                linear-gradient(to bottom, #AB77F8, #5D5BE3);
+            box-shadow: none !important;
+        }
+    }
+    /* 处理 InputNumber 组件的包裹容器 */
+    .ant-input-number {
+        border: none !important;
+        background: transparent !important;
+        
+        .ant-input-number-input {
+            border-radius: 4px;
+        }
+        
+        &:hover, &:focus {
+            box-shadow: none !important;
+        }
+    }
+    /* 添加 Select 渐变边框样式 */
+    .ant-select-selector {
+        position: relative;
+        border: 1px solid transparent !important;
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+        background-image: 
+            linear-gradient(var(--sdppp-widget-background-color), var(--sdppp-widget-background-color)), 
+            linear-gradient(to bottom, #AB77F8, #5D5BE3) !important;
+    }
+    
+    .ant-select-open .ant-select-selector,
+    .ant-select-focused .ant-select-selector,
+    .ant-select-selector:hover {
+        border: 1px solid transparent !important;
+        background-image: 
+            linear-gradient(var(--sdppp-widget-background-color), var(--sdppp-widget-background-color)), 
+            linear-gradient(to bottom, #AB77F8, #5D5BE3) !important;
+        box-shadow: none !important;
+    }
+    
+    /* 修复下拉菜单样式 */
+    .ant-select-dropdown {
+        background-color: var(--sdppp-widget-background-color) !important;
+        border: 1px solid var(--sdppp-widget-border-color) !important;
     }
 }

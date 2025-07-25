@@ -37,7 +37,15 @@ export function ComfyFrontendRenderer() {
                     onChange={(e) => setCurrentInputURL(e.target.value)}
                 />
                 {!comfyWebviewURL || comfyWebviewLoading || comfyWebviewLoadError || currentInputURL !== comfyWebviewURL || comfyWebviewConnectStatus === 'timedout'?
-                    <Button type="primary" onClick={() => {
+                    <Button type="primary"
+                    style={{ 
+                        width: "50%",
+                        backgroundImage: 'url("/src/images/commonButton.png")',
+                        backgroundSize: 'cover',
+                        backgroundRepeat: 'no-repeat',
+                        backgroundPosition: 'center',
+                        color: 'var(--sdppp-host-text-color)', // 添加文字基础颜色
+                      }} onClick={() => {
                         sdpppSDK.stores.PhotoshopActionStore.getState().setComfyWebviewURL(currentInputURL);
                     }}>
                         连接

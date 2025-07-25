@@ -92,13 +92,14 @@ export default function WorkflowEdit({
                 fieldInfo.widgets[0].outputType !== 'number' ||
                 !widgetableStructure.options?.useSliderForNumberWidget
             )))
+            const cleanedTitle = fieldInfo.title.replace(/#/g, '');
             return (
                 <div className="workflow-edit-field param-row" key={fieldInfo.id}>
                     <div className="workflow-edit-field-title param-label" title={fieldInfo.title} style={{
                         ...computeUIWeightCSS(useShortTitle ? 4 : 12),
                     }}>
                         <WidgetTitleRenderErrorBoundary title={fieldInfo.title}>
-                            {renderTitle(fieldInfo.title, fieldInfo)}
+                            {renderTitle(cleanedTitle, fieldInfo)}
                         </WidgetTitleRenderErrorBoundary>
                     </div>
                     {

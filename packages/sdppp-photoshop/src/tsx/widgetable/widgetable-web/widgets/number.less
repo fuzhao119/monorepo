@@ -1,0 +1,29 @@
+.custom-gradient-slider {
+  // 完全重置滑块手柄样式
+  .ant-slider-handle {
+    position: relative !important;
+    background-color: #FFFFFF !important;
+    border: 2px solid #AB77F8 !important; /* 使用渐变起始色作为边框 */
+    width: 16px !important;
+    height: 16px !important;
+    border-radius: 50% !important; /* 确保圆形 */
+    box-shadow: none !important; /* 移除默认阴影 */
+    margin-top: -6px !important; /* 修正垂直居中 */
+    z-index: 1 !important; /* 确保在最上层 */
+    
+    // 移除所有伪元素
+    &::before, &::after {
+      display: none !important;
+    }
+  }
+  
+  // 确保只有一个手柄可见
+  .ant-slider-handle-1 {
+    display: none !important;
+  }
+  
+  // 修正轨道样式
+  .ant-slider-track {
+    background: linear-gradient(to right, #AB77F8, #5D5BE3) !important;
+  }
+}

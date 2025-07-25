@@ -28,7 +28,6 @@ export default function App() {
                     colorLink: 'var(--sdppp-host-text-color)',
                     colorLinkHover: 'var(--sdppp-widget-hover-text-color)',
                     colorLinkActive: 'var(--sdppp-host-text-color)',
-
                 },
                 algorithm: [psTheme === 'kPanelBrightnessDarkGray' || psTheme === 'kPanelBrightnessMediumGray' || psTheme === 'kPanelBrightnessLightGray' ? theme.darkAlgorithm : theme.defaultAlgorithm, theme.compactAlgorithm],
                 components: {
@@ -41,16 +40,16 @@ export default function App() {
                     },
                     Input: {
                         fontSize: fontSize,
-                        colorBgContainer: 'var(--sdppp-widget-background-color)',
+                        colorBgContainer: 'transparent', // 设置为透明，以便显示自定义背景
                         colorText: 'var(--sdppp-host-text-color)',
-                        colorBorder: 'var(--sdppp-widget-border-color)',
+                        colorBorder: 'transparent', // 边框透明，我们使用自定义边框
                         colorTextPlaceholder: 'var(--sdppp-host-text-color-secondary)'
                     },
                     Select: {
                         fontSize: fontSize,
-                        colorBgContainer: 'var(--sdppp-widget-background-color)',
+                        colorBgContainer: 'transparent', // 设置为透明以显示渐变边框
                         colorText: 'var(--sdppp-host-text-color)',
-                        colorBorder: 'var(--sdppp-widget-border-color)',
+                        colorBorder: 'transparent', // 边框透明化
                         colorBgElevated: 'var(--sdppp-widget-background-color)',
                         colorTextDescription: 'var(--sdppp-host-text-color)',
                         controlItemBgActive: 'var(--sdppp-widget-border-color)',
@@ -68,7 +67,6 @@ export default function App() {
                     },
                     Slider: {
                         fontSize: fontSize,
-                        colorBgElevated: 'var(--sdppp-host-text-color)',
                     },
                     Switch: {
                         fontSize: fontSize,

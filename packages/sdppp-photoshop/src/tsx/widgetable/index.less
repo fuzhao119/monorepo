@@ -102,7 +102,6 @@
 
 .reset-btn {
     width: 100%;
-    ;
     height: 30px;
     background-color: #384152;
     color: white;
@@ -200,9 +199,6 @@
 
 .workflow-edit-content {
     color: var(--sdppp-host-text-color-secondary);
-    gap: 8px;
-    display: flex;
-    flex-direction: column;
 }
 /* .workflow-edit-content {
     display: flex;
@@ -215,6 +211,11 @@
     flex-direction: column;
     width: 100%;
     word-break: break-all;
+    margin-bottom: 10px;
+    background-color: #313131;
+    border-radius: 10px;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 /* @media (min-width: 639px) {
@@ -230,14 +231,19 @@
     }
 } */
 
-/* .workflow-edit-field-title {
+.workflow-edit-field-title {
     color: var(--fg-color);
     font-size: 14px;
-    border-left: 4px solid rgba(127, 127, 127, .4);
-    padding: 2px 2px 2px 5px;
+    color:#FCFCFC;
+    font-weight: bold;
+    padding: 2px 2px 2px 25px; /* 增加左内边距以容纳图标 */
     margin: 3px 0;
     display: inline-flex;
-} */
+    background-image: url('/f:/AIX/Aix-Projects/monorepo/packages/sdppp-photoshop/src/images/titleIcon.png');
+    background-size: 11px 14px; /* 图标尺寸 */
+    background-position: 5px center; /* 图标位置：左5px，垂直居中 */
+    background-repeat: no-repeat; /* 禁止图标重复 */
+}
 
 .workflow-edit-field {
     display: flex;
