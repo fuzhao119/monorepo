@@ -133,7 +133,7 @@ const RunButton = ({ currentWorkflow }: { currentWorkflow: string }) => {
   }, [waitAllUploadPasses])
   return (
     <Tooltip title="运行">
-      <Button type="primary" icon={<PlayCircleFilled />} onClick={doRun} />
+      <Button className="gradient-primary-button"  type="primary" icon={<PlayCircleFilled />} onClick={doRun} />
     </Tooltip>
   );
 };

@@ -2,7 +2,7 @@ import { useCallback, useState, useEffect } from 'react';
 import { Flex, InputNumber, Slider, Typography } from 'antd';
 import { useUIWeightCSS } from '../../utils';
 import { BaseWidgetProps } from './_base';
-
+import './number.less';
 interface NumberWidgetProps extends BaseWidgetProps {
     inputMin: number;
     inputMax: number;
@@ -60,7 +60,11 @@ export const NumberWidget: React.FC<NumberWidgetProps> = ({
                     style={{ width: 30 }}
                     >{localValue}</Typography.Text>
                 <Slider
+                    className="custom-gradient-slider" // 添加自定义class
                     style={{ flex: 1 }}
+                    styles={{ 
+                        track: { background: 'linear-gradient(to right, #AB77F8, #5D5BE3)' }
+                    }}
                     min={inputMin}
                     max={inputMax}
                     step={inputStep}

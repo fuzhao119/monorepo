@@ -81,3 +81,14 @@
   height: 32px;
   font-size: 16px;
 }
+.gradient-primary-button {
+  background: linear-gradient(to right, #AB77F8, #5D5BE3) !important;
+  border: none !important;
+  color: white !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(171, 119, 248, 0.5);
+  }
+}

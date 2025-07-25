@@ -49,7 +49,14 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({
             <Row gutter={[8, 8]} className="button-group-row">
                 <Col flex="1 1 0">
                     <Button
-                        style={{ width: '100%' }}
+                        style={{ 
+                          width: "100%",
+                          backgroundImage: 'url("/src/images/commonButton.png")',
+                          backgroundSize: 'cover',
+                          backgroundRepeat: 'no-repeat',
+                          backgroundPosition: 'center',
+                          color: 'var(--sdppp-host-text-color)', // 添加文字基础颜色
+                        }}
                         icon={<PlusOutlined />}
                         onClick={handlePSImageAdd}
                     >
@@ -57,7 +64,15 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({
                     </Button>
                 </Col>
                 <Col flex="1 1 0">
-                    <Upload style={{ width: '100%' }} {...uploadProps}>
+                    <Upload 
+                        style={{ 
+                          width: "100%",
+                          backgroundImage: 'url("/src/images/commonButton.png")',
+                          backgroundSize: 'cover',
+                          backgroundRepeat: 'no-repeat',
+                          backgroundPosition: 'center',
+                          color: 'var(--sdppp-host-text-color)', // 添加文字基础颜色
+                        }} {...uploadProps}>
                         <Button style={{ width: '100%' }} icon={<UploadOutlined />}>从磁盘</Button>
                     </Upload>
                 </Col>

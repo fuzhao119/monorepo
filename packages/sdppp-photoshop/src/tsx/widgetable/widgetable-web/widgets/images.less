@@ -65,7 +65,6 @@
     .image-preview-row {
       height: 100%;
       min-height: 100px;
-
       &.single-image {
         .image-info-col {
           display: flex;
@@ -138,13 +137,6 @@
             }
           }
         }
-
-        .preview-image-col {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          min-width: 0;
-        }
       }
 
       .preview-image-col {
@@ -209,8 +201,7 @@
         }
 
         &.single {
-          background-color: var(--sdppp-widget-background-color);
-          border: 1px solid var(--sdppp-widget-border-color);
+
         }
 
         &.ellipsis {
@@ -301,7 +292,6 @@
 
       .image-preview-row {
         min-height: 110px;
-
         &.single-image {
           .image-info-col {
             flex: 0 0 35%;
@@ -444,5 +434,17 @@
     .ant-space {
       width: 100%;
     }
+  }
+  .upload-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+}
+.image-select-button {
+  
+  &:hover {
+     transform: scale(1.05);
   }
 }
