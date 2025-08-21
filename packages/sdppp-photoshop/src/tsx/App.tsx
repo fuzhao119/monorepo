@@ -3,19 +3,14 @@ import './App.less'
 import { sdpppSDK } from '../sdk/sdppp-ps-sdk'
 import { Button, ConfigProvider, Flex, Select, theme } from 'antd'
 import { Providers } from '../providers'
-import { useMemo, useState } from 'react'
 import { MainStore } from './App.store'
 import ImagePreview from './components/ImagePreview'
+import { SDPPPGateway } from './gateway/sdppp'
 
 export default function App() {
     const psTheme = useStore(sdpppSDK.stores.PhotoshopStore, state => state.theme)
-    const provider = MainStore(state => state.provider)
     const showingPreview = MainStore(state => state.showingPreview)
     const previewImageList = MainStore(state => state.previewImageList)
-
-    const Renderer = useMemo(() => {
-        return provider ? Providers[provider].Renderer : null
-    }, [provider])
 
     const fontSize = 12
 
@@ -98,22 +93,10 @@ export default function App() {
                     显示预览框 ({previewImageList.length}张图片)
                 </Button>
             </Flex> : null}
-            {!showingPreview ? <Select
-                className='app-select'
-                showSearch={true}
-                value={provider}
-                onChange={value => MainStore.setState({ provider: value as (keyof typeof Providers) | '' })}
-            >
-                <Select.Option value="">请选择AI服务</Select.Option>
-                {
-                    Object.keys(Providers)
-                        .map(key => <Select.Option key={key} value={key}>{key}</Select.Option>)
-                }
-            </Select> : null}
             {
                 showingPreview ? <ImagePreview /> : null
             }
-            {Renderer && <Renderer showingPreview={showingPreview} />}
+            <SDPPPGateway />
         </ConfigProvider>
     </div>
 }

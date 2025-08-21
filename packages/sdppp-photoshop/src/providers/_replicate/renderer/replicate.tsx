@@ -26,7 +26,7 @@ export default function ReplicateRenderer({ showingPreview }: { showingPreview: 
                 />
             </Flex> : null}
             {
-                !apiKey && <Link onClick={() => sdpppSDK.plugins.uxp.openExternalLink("https://replicate.com/account/api-tokens")}>如何获取APIKey</Link>
+                !apiKey && <Link onClick={() => sdpppSDK.plugins.photoshop.openExternalLink({ url: "https://replicate.com/account/api-tokens" })}>如何获取APIKey</Link>
             }
 
             {error && (
@@ -61,6 +61,9 @@ function ReplicateRendererModels() {
     }, [selectedModel]);
 
     const handleModelChange = async (value: string) => {
+        if (value === selectedModel) {
+            return;
+        }
         if (client) {
             setLoadError('');
             setLoading(true);
@@ -95,7 +98,6 @@ function ReplicateRendererModels() {
                 }}
                 onBlur={(e) => handleModelChange((e.target as any).value)}
                 onSelect={(value) => {
-                    console.log('onSelect', value);
                     if (value) {
                         handleModelChange(value);
                     }
@@ -112,7 +114,7 @@ function ReplicateRendererModels() {
 }
 
 function ReplicateRendererForm() {
-    const currentWidgets = replicateStore((state) => state.currentWidgets);
+    const currentNodes = replicateStore((state) => state.currentNodes);
     const currentValues = replicateStore((state) => state.currentValues);
     const setCurrentValues = replicateStore((state) => state.setCurrentValues);
     const selectedModel = replicateStore((state) => state.selectedModel);
@@ -122,9 +124,29 @@ function ReplicateRendererForm() {
         selectedModel,
         currentValues,
         createTask,
-        runningTasks
+        runningTasks,
+        beforeCreateTaskHook: (values) => {
+            // 处理图片字段，从对象中提取URL
+            const processedValues = { ...values };
+            
+            currentNodes.forEach((node) => {
+                if (node.widgets[0].outputType === 'images') {
+                    const fieldValue = processedValues[node.id];
+                    if (fieldValue) {
+                        if (Array.isArray(fieldValue)) {
+                            processedValues[node.id] = fieldValue.map((item: any) => 
+                                (typeof item === 'object' && item.url) ? item.url : item
+                            );
+                        } else if (typeof fieldValue === 'object' && fieldValue.url) {
+                            processedValues[node.id] = fieldValue.url;
+                        }
+                    }
+                }
+            });
+            
+            return processedValues;
+        }
     });
-
     return (
         <>
             <Button type="primary" onClick={handleRun}>执行</Button>
@@ -132,13 +154,10 @@ function ReplicateRendererForm() {
             {runError && <Alert message={runError} type="error" showIcon />}
             <WorkflowEditApiFormat
                 modelName={selectedModel}
-                widgets={currentWidgets}
+                nodes={currentNodes}
                 values={currentValues}
                 errors={{}}
                 onWidgetChange={(widgetIndex: number, value: any, fieldInfo: WidgetableNode) => {
-                    if (value && (fieldInfo.widgets[widgetIndex].outputType === 'images' || fieldInfo.widgets[widgetIndex].outputType === 'masks')) {
-                        value = value.url
-                    }
                     currentValues[fieldInfo.id] = value;
                     setCurrentValues(currentValues);
                 }}
