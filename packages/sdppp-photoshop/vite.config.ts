@@ -101,5 +101,12 @@ export default defineConfig({
   },
   server: {
     port: 19920,
+    proxy: {
+      '/api': {
+        target: 'http://127.0.0.1:8763',  // 接口源地址
+        changeOrigin: true,   // 开启跨域
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      }
+    }
   } 
 }); 
