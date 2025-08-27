@@ -5,7 +5,6 @@ import { useStore } from "zustand";
 import { sdpppSDK } from "../../../../sdk/sdppp-ps-sdk";
 import { Alert } from "antd";
 import ErrorBoundary from "antd/es/alert/ErrorBoundary";
-import config from "../../../../../plugin/config.json";
 
 export function ComfyFrontendRendererContent() {
     const [view, setView] = useState<'list' | 'detail'>('list');
