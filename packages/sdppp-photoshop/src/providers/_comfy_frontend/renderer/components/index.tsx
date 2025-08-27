@@ -5,15 +5,13 @@ import { useStore } from "zustand";
 import { sdpppSDK } from "../../../../sdk/sdppp-ps-sdk";
 import { Alert } from "antd";
 import ErrorBoundary from "antd/es/alert/ErrorBoundary";
-import config from "../../../../../plugin/config.json";
 
 export function ComfyFrontendRendererContent() {
     const [view, setView] = useState<'list' | 'detail'>('list');
     const [currentWorkflow, setCurrentWorkflow] = useState<string>('');
     const widgetablePath = useStore(sdpppSDK.stores.ComfyStore, (state) => state.widgetableStructure.widgetablePath.replace(/^workflows\//, ''));
-    const comfyWebviewURL = useStore(sdpppSDK.stores.PhotoshopStore, (state) => state.comfyWebviewURL);
-    const userCode = config.userCode; 
-    
+    const comfyWebviewURL = useStore(sdpppSDK.stores.PhotoshopStore, (state) => state.comfyURL);
+    const sdpppX = useStore(sdpppSDK.stores.PhotoshopStore, (state) => state.sdpppX);
     useEffect(() => {
         if (widgetablePath === currentWorkflow && currentWorkflow) {
             setView('detail');
@@ -23,10 +21,9 @@ export function ComfyFrontendRendererContent() {
     }, [currentWorkflow, widgetablePath]);
     
     useEffect(() => {
-        // 确保URL存在
         if (comfyWebviewURL) {
-            if (userCode) {
-                const url = `${comfyWebviewURL.replace(/\/$/, '')}/psToken?code=${userCode}`;
+            if (sdpppX && sdpppX.userCode && sdpppX.userCode !== '') {
+                const url = `${comfyWebviewURL.replace(/\/$/, '')}/psToken?code=${sdpppX.userCode}`;
                 console.log('psToken请求URL:', url);
                 fetch(url)
                     .then(response => {
@@ -46,7 +43,7 @@ export function ComfyFrontendRendererContent() {
                 console.error('无法获取code参数，config.json中可能未定义userCode');
             }
         }
-    }, [comfyWebviewURL, userCode]); // 添加userCode作为依赖项
+    }, [comfyWebviewURL]); 
     
     return (
         <SDPPPErrorBoundary>
