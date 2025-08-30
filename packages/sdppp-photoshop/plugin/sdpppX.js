@@ -1,4 +1,4 @@
 global.sdpppX = {
-  "settings.imaging.defaultImagesSizeLimit": 2048,
-  "userCode":"ps01"
+  "settings.imaging.defaultImagesSizeLimit": 0,
+  "userCode":""
 }
